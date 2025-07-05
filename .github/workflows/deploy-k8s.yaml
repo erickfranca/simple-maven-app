@@ -3,12 +3,12 @@ name: Deploy and Test Cluster
 on:
   push:
     branches: [main]
-    paths:
-      - 'k8s/**'
+#    paths:
+#      - 'k8s/**'
   pull_request:
     branches: [main]
-    paths:
-      - 'k8s/**'
+#    paths:
+#      - 'k8s/**'
 
 jobs:
   deploy-and-test-cluster:
@@ -16,6 +16,11 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t simple-maven-app:latest .
+          kind load docker-image simple-maven-app:latest
 
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
