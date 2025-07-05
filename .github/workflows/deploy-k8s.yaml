@@ -17,13 +17,13 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v2
 
+      - name: Create k8s Kind Cluster
+        uses: helm/kind-action@v1
+
       - name: Build Docker image
         run: |
           docker build -t simple-maven-app:latest .
           kind load docker-image simple-maven-app:latest
-
-      - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1
 
       - name: Deploy application
         run: |
