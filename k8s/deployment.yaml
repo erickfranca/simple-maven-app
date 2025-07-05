@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-maven-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-maven-app
+  template:
+    metadata:
+      labels:
+        app: simple-maven-app
+    spec:
+      containers:
+      - name: simple-maven-app
+        image: efranca/simple-maven-app:latest
+        ports:
+        - containerPort: 8080
