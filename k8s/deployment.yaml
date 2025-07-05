@@ -17,3 +17,4 @@ spec:
         image: efranca/simple-maven-app:latest
         ports:
         - containerPort: 8080
+          name: http
