@@ -1,6 +1,6 @@
 deploy:
   name: simple-maven-app
-  replicaCount: 2
+  replicaCount: 3
   image:
     repository: efranca/simple-maven-app
     pullPolicy: IfNotPresent
