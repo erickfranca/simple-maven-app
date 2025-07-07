@@ -1,0 +1,19 @@
+deploy:
+  name: simple-maven-app
+  replicaCount: 2
+  image:
+    repository: efranca/simple-maven-app
+    pullPolicy: IfNotPresent
+    tag: "latest"
+    containerPort: 8080
+
+service:
+  name: simple-maven-app
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: false
+
+resources: {}

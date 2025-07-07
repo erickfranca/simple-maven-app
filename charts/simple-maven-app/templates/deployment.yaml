@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploy.name }}
+spec:
+  replicas: {{ .Values.deploy.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deploy.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deploy.name }}
+    spec:
+      containers:
+      - name: simple-maven-app-container
+        image: {{ .Values.deploy.image.repository }}:{{ .Values.deploy.image.tag }}
+        ports:
+        - containerPort: {{ .Values.deploy.image.containerPort }}
+          name: http
